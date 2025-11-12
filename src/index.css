@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  /* small = phones (hide image) */
+  --breakpoint-sm: 25rem; /* 640px */
+  
+  /* medium = tablets / half-screen */
+  --breakpoint-md: 50rem; /* 1024px */
+  
+  /* large = desktops / full screen */
+  --breakpoint-lg: 80rem; /* 1280px */
+}
