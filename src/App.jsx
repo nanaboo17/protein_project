@@ -1,22 +1,28 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import HeroSection from "./components/landingpage/HeroSection";
-import AboutSection from "./components/landingpage/AboutSection";
-import ProgramsSection from "./components/landingpage/ProgramsSection";
-import WhyChooseUs from "./components/landingpage/WhyChooseUs";
-import TestimonialsSection from "./components/landingpage/TestimonialsSection";
+import HomePage from "./components/landingpage/HomePage";
+import AboutPage from "./components/aboutUs/AboutPage";
+import PreschoolProgramsPage from "./components/programs/preschool/PreschoolProgramsPage";
+import BimbelProgramsPage from "./components/programs/bimbel/BimbelProgramsPage";
+import GalleryPage from "./components/gallery/GalleryPage";
+import ContactUsPage from "./components/admission/contact/ContactUsPage";
+import EnrollKidPage from "./components/admission/enroll/EnrollKidPage";
 
-const App = () => {
+export default function App() {
   return (
-    <div>
+    <>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ProgramsSection />
-      <WhyChooseUs />
-      <TestimonialsSection />
-    </div>
-  );
-};
 
-export default App;
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/programs/preschool" element={<PreschoolProgramsPage />} />
+        <Route path="/programs/bimbel" element={<BimbelProgramsPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/admissions/contact" element={<ContactUsPage />} />
+        <Route path="/admissions/enroll" element={<EnrollKidPage />} />
+      </Routes>
+    </>
+  );
+}

@@ -1,19 +1,23 @@
 import React from "react";
-import heroImg from "../../assets/landing_page/coba.png"; // replace with your actual image
+import heroImg from "../../assets/landing_page/coba.png";
 
 export default function HeroSection() {
   return (
-    <section className="bg-color[#f5efe5] relative overflow-hidden w-full flex flex-col md:flex-row items-center justify-between px-10 md:px-24 py-20 bg-[url('/src/assets/landing_page/background-hero.png')] bg-no-repeat bg-cover bg-center">
+    <section
+      className="relative overflow-visible w-full flex flex-col md:flex-row items-center justify-between 
+                 px-10 md:px-24 py-20 bg-[#f5efe5] 
+                 bg-[url('../../assets/landing_page/background-hero.png')] bg-cover bg-center"
+    >
       {/* Left Text Section */}
-      <div className="w-full md:w-full md:pr-0 pr-10 sm:pr-0 ">
-        <h1 className="text-[52px] sm:text-[40px] md:text-[47px] font-bold leading-tight text-[#4D6D8E]">
+      <div className="w-full md:w-full">
+        <h1 className="text-[38px] md:text-[47px] xl:text-[55px] font-bold leading-tight text-[#4D6D8E]">
           Inspiring Future Generations
           <br />
           through <span className="text-[#F9A22E]">Education</span> and{" "}
           <span className="text-[#F9A22E]">Values</span>
         </h1>
 
-        <p className="text-[#4D6D8E] text-[18px] mt-6 sm:text-[16px] leading-relaxed max-w-[85%]">
+        <p className="text-[#4D6D8E] text-[16px] md:text-[18px] mt-6 leading-relaxed max-w-[85%]">
           At Rumah Sukses Foundation, we believe every child deserves the
           opportunity to learn, grow, and succeed.
         </p>
@@ -27,7 +31,7 @@ export default function HeroSection() {
       <div className="absolute right-0 bottom-0 hidden md:block">
         <img
           src={heroImg}
-          className="w-[500px] md:hidden xl:w-[600px] object-contain"
+          className="w-[450px]  object-contain"
           alt="Happy children learning"
         />
       </div>
