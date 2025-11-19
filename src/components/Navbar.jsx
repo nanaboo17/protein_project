@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
+  if (location.pathname.startsWith("/admin")) {
+    return null;
+  }
   const [isOn, setIsOn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProgramsOpen, setIsProgramsOpen] = useState(false); // desktop dropdown
-  const [isContactOpen, setIsContactOpen] = useState(false); // admission dropdown
-  const [isProgramsMobileOpen, setIsProgramsMobileOpen] = useState(false); // mobile dropdown
+  const [isProgramsOpen, setIsProgramsOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isProgramsMobileOpen, setIsProgramsMobileOpen] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleToggle = () => {
+    setIsOn((prev) => {
+      const next = !prev;
+      if (next) {
+        // when toggle becomes ON, go to admin page
+        navigate("/admin");
+      }
+      return next;
+    });
+  };
   return (
     <nav className="bg-[#F9A22E] w-full py-5 shadow-md relative">
       {/* ====== Desktop Navbar ====== */}
@@ -112,7 +128,7 @@ export default function Navbar() {
 
         {/* Toggle Switch */}
         <div
-          onClick={() => setIsOn(!isOn)}
+          onClick={handleToggle}
           className={`ml-10 w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
             isOn ? "bg-green-400" : "bg-gray-200"
           }`}
@@ -137,7 +153,7 @@ export default function Navbar() {
 
         {/* Toggle Switch (mobile) */}
         <div
-          onClick={() => setIsOn(!isOn)}
+          onClick={handleToggle}
           className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
             isOn ? "bg-green-400" : "bg-gray-200"
           }`}
