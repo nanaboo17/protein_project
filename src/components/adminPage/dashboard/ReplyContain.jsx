@@ -180,7 +180,7 @@ export default function ContactInquiryResponse() {
         <section className="mt-6 bg-white rounded-2xl border border-[#CFDCED] shadow-sm overflow-hidden">
           {/* Card header */}
           <div className="px-6 py-4 border-b border-[#CFDCED]">
-            <h2 className="text-[25px] font-bold text-[#21406A]">
+            <h2 className="text-[25px] font-bold text-[#0f3f04]">
               Contact Inquiries Response
             </h2>
             <p className="mt-1 text-[13px] text-[#21406A]">
@@ -194,7 +194,7 @@ export default function ContactInquiryResponse() {
           <div className="px-6 py-5 space-y-6">
             {/* Original inquiry section */}
             <section className="rounded-xl border border-[#E5EBBF] bg-[#EEF4C9] px-5 py-4">
-              <h3 className="text-[13px] font-semibold text-[#194A81] mb-2">
+              <h3 className="text-[13px] font-semibold text-[#0f3f04] mb-2">
                 Original Inquiry from {originalName}
               </h3>
               <div className="bg-white rounded-md border border-[#D6DCC8] px-4 py-3 text-[15px] text-[#194A81]">
@@ -209,7 +209,7 @@ export default function ContactInquiryResponse() {
               <div className="space-y-1">
                 <label
                   htmlFor="to"
-                  className="block text-[13px] font-semibold text-[#194A81]"
+                  className="block text-[13px] font-semibold text-[#0f3f04]"
                 >
                   To
                 </label>
@@ -226,7 +226,7 @@ export default function ContactInquiryResponse() {
               <div className="space-y-1">
                 <label
                   htmlFor="subject"
-                  className="block text-[13px] font-semibold text-[#194A81]"
+                  className="block text-[13px] font-semibold text-[#0f3f04]"
                 >
                   Subject
                 </label>
@@ -241,7 +241,7 @@ export default function ContactInquiryResponse() {
 
               {/* Message */}
               <div className="space-y-1">
-                <label className="block text-[13px] font-semibold text-[#194A81]">
+                <label className="block text-[13px] font-semibold text-[#0f3f04]">
                   Message
                 </label>
 
@@ -340,13 +340,13 @@ export default function ContactInquiryResponse() {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="px-5 py-2 rounded-full border border-[#D6DCC8] bg-white text-[13px] text-[#314130] hover:bg-[#F4F5EC]"
+                  className="px-5 py-2 rounded-full border hover:cursor-pointer border-[#D6DCC8] bg-white text-[13px] text-[#314130] hover:bg-[#F4F5EC]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 rounded-full bg-[#194A81] text-[13px] text-white font-semibold hover:bg-[#153b66]"
+                  className="px-6 py-2 rounded-full bg-[#698862] text-[13px] text-white font-semibold hover:cursor-pointer hover:bg-[#4e7446]"
                 >
                   Send
                 </button>

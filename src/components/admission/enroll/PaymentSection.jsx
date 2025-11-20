@@ -7,6 +7,7 @@ import {
   Upload,
   Copy,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import TermsModal from "./TermsModal";
 import backgroundImg from "../../../assets/contact_page/background.png";
@@ -20,7 +21,7 @@ export default function EnrollPaymentSection({ onSubmit }) {
   const [proofFileName, setProofFileName] = useState("");
   const [agree, setAgree] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
-
+  const navigate = useNavigate();
   const preschoolCourses = [
     {
       id: "playgroup",
@@ -84,15 +85,8 @@ export default function EnrollPaymentSection({ onSubmit }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!selectedCourse || !agree) return;
-
-    if (onSubmit) {
-      onSubmit({
-        selectedCourse,
-        proofFileName,
-      });
-    }
+    e.preventDefault(); // prevent default form refresh
+    navigate("/enrollment/success");
   };
 
   return (

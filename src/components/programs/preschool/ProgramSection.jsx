@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 // replace these imports with your own images
 import playgroupImg from "../../../assets/preschool_page/playgroup.png";
 import kgAImg from "../../../assets/preschool_page/kindergarten-a.png";
@@ -6,8 +8,14 @@ import kgBImg from "../../../assets/preschool_page/kindergarten-b.png";
 import waveBottom from "../../../assets/preschool_page/wave.png";
 
 export default function PreschoolProgramsSection() {
+  const navigate = useNavigate();
+
+  const goToEnroll = () => {
+    navigate("/admissions/enroll");
+  };
+
   return (
-    <section className="w-full  py-16 px-4 md:px-8 overflow-hidden">
+    <section className="w-full py-16 px-4 md:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto bg-[#E9F3FB] border border-[#2A4E8A] rounded-3xl px-6 md:px-12 py-12">
         {/* Heading */}
         <h2 className="text-center text-[#1E3E73] text-3xl md:text-4xl font-extrabold">
@@ -37,7 +45,10 @@ export default function PreschoolProgramsSection() {
                 For our youngest learners, focusing on social skills and basic
                 concepts.
               </p>
-              <button className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm">
+              <button
+                onClick={goToEnroll}
+                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+              >
                 Enroll Now
               </button>
             </div>
@@ -58,7 +69,10 @@ export default function PreschoolProgramsSection() {
                 Building foundational skills in literacy, numeracy, and Islamic
                 studies.
               </p>
-              <button className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm">
+              <button
+                onClick={goToEnroll}
+                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+              >
                 Enroll Now
               </button>
             </div>
@@ -79,7 +93,10 @@ export default function PreschoolProgramsSection() {
                 Preparing children for primary school with strong skills and
                 character.
               </p>
-              <button className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm">
+              <button
+                onClick={goToEnroll}
+                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+              >
                 Enroll Now
               </button>
             </div>

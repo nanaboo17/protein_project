@@ -10,13 +10,27 @@ import FooterBar from "./Footer";
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <AboutSection />
-      <ProgramsSection />
-      <WhyChooseUs />
-      <TestimonialsSection />
-      <ContactSection />
-      <FooterBar />
+      <div>
+        <HeroSection />
+      </div>
+      <div>
+        <AboutSection />
+      </div>
+      <div>
+        <ProgramsSection />
+      </div>
+      <div>
+        <WhyChooseUs />
+      </div>
+      <div>
+        <TestimonialsSection />
+      </div>
+      <div>
+        <ContactSection />
+      </div>
+      <div>
+        <FooterBar />
+      </div>
     </>
   );
 }

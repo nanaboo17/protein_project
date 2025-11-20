@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import { ChevronDown, Share, Undo } from "lucide-react";
+import { ChevronDown, Share, Undo, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import userImg from "../../../assets/admin_page/inquiries-header.png";
 import searchIcon from "../../../assets/admin_page/search-icon.png";
@@ -119,6 +119,10 @@ export default function ContactInquiries() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [datePickerOpen, setDatePickerOpen] = useState(false);
+
+  const [page, setPage] = useState(0); // zero-based
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsMenuOpen, setRowsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleReply = (inq) => {
@@ -161,6 +165,23 @@ export default function ContactInquiries() {
     });
   }, [searchTerm, startDate, endDate]);
 
+  useEffect(() => {
+    setPage(0);
+  }, [searchTerm, startDate, endDate]);
+
+  const paginatedInquiries = useMemo(() => {
+    const startIndex = page * rowsPerPage;
+    return filteredInquiries.slice(startIndex, startIndex + rowsPerPage);
+  }, [filteredInquiries, page, rowsPerPage]);
+
+  const total = filteredInquiries.length;
+  const from = total === 0 ? 0 : page * rowsPerPage + 1;
+  const to = Math.min(total, (page + 1) * rowsPerPage);
+  const totalPages =
+    rowsPerPage === 0 ? 1 : Math.max(1, Math.ceil(total / rowsPerPage));
+
+  const canGoPrev = page > 0;
+  const canGoNext = page < totalPages - 1;
   const handleExportCsv = () => {
     const headers = ["Date", "Name", "Email", "WhatsApp", "Subject", "Status"];
 
@@ -204,7 +225,7 @@ export default function ContactInquiries() {
       : "Date Range";
 
   return (
-    <div className="min-h-screen bg-[#F4F5EC] flex">
+    <div className="min-h-screen bg-[#F4F5EC] flex ">
       {/* Sidebar you already have */}
       <Sidebar />
 
@@ -223,11 +244,7 @@ export default function ContactInquiries() {
           {/* Search */}
           <div className="flex-1">
             <div className="bg-white h-[43px] rounded-lg border border-[#21406A] px-4 py-2 flex items-center gap-2 text-[13px]">
-              <img
-                src={searchIcon}
-                alt="Search"
-                className="w-4 h-4 object-contain"
-              />
+              <Search className="w-4 h-4 text-[#0f3f04] "></Search>
               <input
                 type="text"
                 placeholder="Search"
@@ -299,16 +316,18 @@ export default function ContactInquiries() {
             {/* Export CSV */}
             <button
               onClick={handleExportCsv}
-              className="px-5 h-[43px] py-2 rounded-lg bg-white border border-[#21406A] text-[13px] text-[#21406A] flex items-center gap-2"
+              className="px-5 h-[43px] py-2 rounded-lg bg-white border border-[#21406A] text-[13px]  flex items-center gap-2"
             >
-              <Share size={14} className="text-[#194a81]" />
-              <span className="font-semibold">Export Report</span>
+              <Share size={14} className="text-[#0f3f04]" />
+              <span className="font-semibold text-[#0f3f04]">
+                Export Report
+              </span>
             </button>
           </div>
         </section>
 
         {/* Table card */}
-        <section className="mt-5 bg-white rounded-xl shadow-sm border border-[#D6DCC8] overflow-hidden">
+        <section className="mt-5 bg-white rounded-xl shadow-sm border border-[#D6DCC8] overflow-visible">
           <table className="w-full text-[12px]">
             <thead className="bg-[#698862] text-white">
               <tr>
@@ -322,7 +341,7 @@ export default function ContactInquiries() {
               </tr>
             </thead>
             <tbody>
-              {filteredInquiries.map((inq, idx) => (
+              {paginatedInquiries.map((inq, idx) => (
                 <tr
                   key={inq.name + idx}
                   className="border-t border-[#E4E7D8] hover:bg-[#FAFBF5]"
@@ -330,10 +349,10 @@ export default function ContactInquiries() {
                   <td className="py-2.5 px-4 text-center text-[#4F5947]">
                     {inq.date}
                   </td>
-                  <td className="py-2.5 px-4 text-center text-[#1E3860] font-semibold">
+                  <td className="py-2.5 px-4 text-center text-[#0f3f04] font-semibold">
                     {inq.name}
                   </td>
-                  <td className="py-2.5 px-4 text-center text-[#1E3860] underline">
+                  <td className="py-2.5 px-4 text-center text-[#0f3f04] underline">
                     {inq.email}
                   </td>
                   <td className="py-2.5 px-4 text-center">{inq.whatsapp}</td>
@@ -348,7 +367,7 @@ export default function ContactInquiries() {
                         onClick={() => handleReply(inq)}
                         className="rounded-full w-7 h-7 flex items-center justify-center hover:bg-[#F4F5EC]"
                       >
-                        <Undo size={17} className="text-[#194a81]" />
+                        <Undo size={17} className="text-[#0f3f04]" />
                       </button>
                     </div>
                   </td>
@@ -368,27 +387,77 @@ export default function ContactInquiries() {
             </tbody>
           </table>
 
-          {/* Pagination footer (static for now) */}
+          {/* ✅ Pagination footer (now dynamic) */}
           <div className="flex items-center justify-between px-4 py-3 border-t border-[#E4E7D8] text-[11px] text-[#6D7566]">
             <div className="flex items-center gap-2">
               <span>Row per page</span>
-              <button className="border border-[#D6DCC8] rounded-md px-2 py-1 flex items-center gap-1 bg-[#F4F5EC]">
-                <span>10</span>
-                <span className="text-[10px]">▾</span>
-              </button>
+
+              {/* Simple custom dropdown for rows per page */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setRowsMenuOpen((prev) => !prev)}
+                  className="border border-[#D6DCC8] rounded-md px-2 py-1 flex items-center gap-1 bg-[#F4F5EC]"
+                >
+                  <span>{rowsPerPage}</span>
+                  <span className="text-[10px]">▾</span>
+                </button>
+
+                {rowsMenuOpen && (
+                  <div className="absolute z-10 mt-1 w-20 bg-white border border-[#D6DCC8] rounded-md shadow-md">
+                    {[5, 10, 25, 50].map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        className={`block w-full text-left px-3 py-1 hover:bg-[#F4F5EC] ${
+                          rowsPerPage === size ? "font-semibold" : ""
+                        }`}
+                        onClick={() => {
+                          setRowsPerPage(size);
+                          setPage(0);
+                          setRowsMenuOpen(false);
+                        }}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <span className="ml-3">
-                1-10 of <span className="font-semibold">100</span>
+                {from}-{to} of <span className="font-semibold">{total}</span>
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <button className="rounded-full border border-[#D6DCC8] w-7 h-7 flex items-center justify-center text-xs text-[#9AA28B]">
+              <button
+                type="button"
+                onClick={() => canGoPrev && setPage((p) => p - 1)}
+                disabled={!canGoPrev}
+                className={`rounded-full border border-[#D6DCC8] w-7 h-7 flex items-center justify-center text-xs ${
+                  canGoPrev
+                    ? "text-[#0f3f04]"
+                    : "text-[#9AA28B] cursor-not-allowed opacity-50"
+                }`}
+              >
                 ‹
               </button>
+
               <span className="px-2 py-1 rounded-md bg-[#F4F5EC] border border-[#D6DCC8]">
-                1
+                {page + 1}
               </span>
-              <button className="rounded-full border border-[#D6DCC8] w-7 h-7 flex items-center justify-center text-xs">
+
+              <button
+                type="button"
+                onClick={() => canGoNext && setPage((p) => p + 1)}
+                disabled={!canGoNext}
+                className={`rounded-full border border-[#D6DCC8] w-7 h-7 flex items-center justify-center text-xs ${
+                  canGoNext
+                    ? "text-[#0f3f04]"
+                    : "text-[#9AA28B] cursor-not-allowed opacity-50"
+                }`}
+              >
                 ›
               </button>
             </div>
