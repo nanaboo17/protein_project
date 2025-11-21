@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import preschoolImg from "../../assets/landing_page/preschool.png"; // replace with your image
 import courseImg from "../../assets/landing_page/course.png"; // replace with your image
 
 export default function ProgramsSection() {
+  const navigate = useNavigate();
   return (
     <section className="w-full bg-[#EFF5F7] py-20 px-6 md:px-20 relative overflow-hidden">
       {/* Decorative background images */}
@@ -48,7 +50,10 @@ export default function ProgramsSection() {
               character, knowledge, and creativity, ensuring every child is
               prepared for the next stage of their educational journey.
             </p>
-            <button className="bg-[#FDA133] hover:bg-[#e8911e] text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md">
+            <button
+              onClick={() => navigate("programs/preschool")}
+              className="bg-[#FDA133] hover:bg-[#e8911e] text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md"
+            >
               Explore Preschool
             </button>
           </div>
@@ -72,7 +77,10 @@ export default function ProgramsSection() {
               methods, we help students achieve academic excellence and unlock
               their full potential.
             </p>
-            <button className="bg-[#FDA133] hover:bg-[#e8911e] text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md">
+            <button
+              onClick={() => navigate("programs/bimbel")}
+              className="bg-[#FDA133] hover:bg-[#e8911e] text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md"
+            >
               Explore Course
             </button>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import type { SVGProps } from "react";
+import { Icon } from "@iconify/react";
+import whatsappIcon from "@iconify/icons-mdi/whatsapp";
 
 import bg from "../../../assets/contact_page/background.png";
 import tree from "../../../assets/contact_page/tree.png";
@@ -9,7 +10,7 @@ import hut from "../../../assets/contact_page/hut.png";
 export default function EnrollmentSuccess() {
   const handleWhatsapp = () => {
     window.open(
-      "https://wa.me/62XXXXXXXXX?text=Hello, I want to confirm my enrollment payment.",
+      "https://wa.me/6282231695138?text=Hello, I want to confirm my enrollment payment.",
       "_blank"
     );
   };
@@ -64,17 +65,13 @@ export default function EnrollmentSuccess() {
         {/* WhatsApp button */}
         <button
           onClick={handleWhatsapp}
-          className="mt-6 w-full bg-[#4E92DF] hover:bg-[#3884da] text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition"
+          className=" w-full bg-[#4E92DF] h-[55px] hover:bg-[#3884da] text-white font-semibold py-3 rounded-[10px] flex items-center justify-center gap-2 transition"
         >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="whatsapp"
-            className="w-5 h-5"
-          />
+          <Icon icon={whatsappIcon} width="34" height="34" />
           Confirm Payment via WhatsApp
         </button>
 
-        <p className="mt-4 text-xs text-[#727D92]">
+        <p className="mt-4 text-[16px] text-black">
           For a faster verification process, please click the button above to
           notify our admin.
         </p>

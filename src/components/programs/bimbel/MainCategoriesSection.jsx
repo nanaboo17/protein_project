@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // ====== IMAGES (update these paths to your own files) ======
 import mathImg from "../../../assets/bimbel_page/math.png";
@@ -14,6 +15,7 @@ import readingWritingImg from "../../../assets/bimbel_page/reading-writing.png";
 // ==========================================================
 
 export default function MainCategoriesSection() {
+  const navigate = useNavigate();
   // ✅ plain JS useState
   const [activeTab, setActiveTab] = useState("bimbel"); // "bimbel" | "courses"
 
@@ -86,7 +88,10 @@ export default function MainCategoriesSection() {
         <p className="mt-2 text-[#5B6F8E] text-sm leading-relaxed flex-1">
           {item.desc}
         </p>
-        <button className="mt-5 w-full bg-[#FDA133] text-white font-semibold py-2.5 rounded-[10px] text-sm">
+        <button
+          onClick={() => navigate("/admissions/enroll")}
+          className="mt-5 w-full bg-[#FDA133] text-white font-semibold py-2.5 rounded-[10px] text-sm"
+        >
           Enroll Now
         </button>
       </div>
