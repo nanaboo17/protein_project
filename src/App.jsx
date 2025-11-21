@@ -13,7 +13,8 @@ import AdminDashboard from "./components/adminPage/dashboard/DashboardPage";
 import ContactInquiries from "./components/adminPage/dashboard/ContactInquiriesPage";
 import ContactInquiryResponse from "./components/adminPage/dashboard/ReplyContain";
 import EnrollmentSuccessPage from "./components/admission/enroll/EnrollmentSuccess";
-
+import EnrollmentDataPage from "./components/adminPage/Enrollment/EnrollmentPage";
+import ManageContent from "./components/adminPage/managecontent/ManageContentPage";
 export default function App() {
   return (
     <>
@@ -35,6 +36,8 @@ export default function App() {
           element={<ContactInquiryResponse />}
         />
         <Route path="/enrollment/success" element={<EnrollmentSuccessPage />} />
+        <Route path="/admin/enrollment" element={<EnrollmentDataPage />} />
+        <Route path="/admin/content" element={<ManageContent />} />
       </Routes>
     </>
   );
