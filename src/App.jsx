@@ -15,6 +15,8 @@ import ContactInquiryResponse from "./components/adminPage/dashboard/ReplyContai
 import EnrollmentSuccessPage from "./components/admission/enroll/EnrollmentSuccess";
 import EnrollmentDataPage from "./components/adminPage/Enrollment/EnrollmentPage";
 import ManageContent from "./components/adminPage/managecontent/ManageContentPage";
+import AdminSettings from "./components/adminPage/settingsPage/settingsPage";
+
 export default function App() {
   return (
     <>
@@ -38,6 +40,7 @@ export default function App() {
         <Route path="/enrollment/success" element={<EnrollmentSuccessPage />} />
         <Route path="/admin/enrollment" element={<EnrollmentDataPage />} />
         <Route path="/admin/content" element={<ManageContent />} />
+        <Route path="/admin/settings" element={<AdminSettings />} />
       </Routes>
     </>
   );

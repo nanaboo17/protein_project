@@ -6,8 +6,10 @@ import FilterBar from "../dashboard/components/FilterBar";
 import { MoreVertical, FileText } from "lucide-react";
 import header from "../../../assets/admin_page/enrollment-header.png";
 
-const enrollments = [
+/* ---------- initial data (now includes id) ---------- */
+const initialEnrollments = [
   {
+    id: "e1",
     date: "2025-08-12",
     child: "Sophia Clark",
     gender: "Female",
@@ -15,7 +17,6 @@ const enrollments = [
     religion: "Christian",
     address: "Jl. Cendrawasih No.1, RT.02/RW.05",
     school: "Anytown Elementary School",
-    child: "Sophia Clark",
     parent: "Emily Clark",
     email: "Emily@gmail.com",
     whatsapp: "081299428949",
@@ -26,6 +27,7 @@ const enrollments = [
     documents: [{ name: "family_card.pdf" }, { name: "payment_proof.jpg" }],
   },
   {
+    id: "e2",
     date: "2025-08-12",
     child: "Liam Carter",
     gender: "Male",
@@ -33,7 +35,6 @@ const enrollments = [
     religion: "Christian",
     address: "Jl. Cendrawasih No.1, RT.02/RW.05",
     school: "Anytown Elementary School",
-    child: "Sophia Clark",
     parent: "Emily Clark",
     email: "Emily@gmail.com",
     whatsapp: "081299428949",
@@ -44,6 +45,7 @@ const enrollments = [
     documents: [{ name: "family_card.pdf" }, { name: "payment_proof.jpg" }],
   },
   {
+    id: "e3",
     date: "2025-08-12",
     child: "Olivia Bennet",
     gender: "Female",
@@ -51,7 +53,6 @@ const enrollments = [
     religion: "Moslem",
     address: "Jl. Cendrawasih No.1, RT.02/RW.05",
     school: "Anytown Elementary School",
-    child: "Olivia Bennet",
     parent: "Tina Bennet",
     email: "Olivia@gmail.com",
     whatsapp: "081299228384",
@@ -61,8 +62,8 @@ const enrollments = [
     status: "Pending",
     documents: [{ name: "family_card.pdf" }, { name: "payment_proof.jpg" }],
   },
-  ,
   {
+    id: "e4",
     date: "2025-11-26",
     child: "Noah Davis",
     parent: "Michael Davis",
@@ -72,24 +73,27 @@ const enrollments = [
     status: "Rejected",
   },
   {
+    id: "e5",
     date: "2025-11-26",
     child: "Ava Foster",
     parent: "Jesica Foster",
     program: "Kindergarten A",
     grade: "TK",
     number: "081439059395",
-    status: "Resolved",
+    status: "Verified",
   },
   {
+    id: "e6",
     date: "2025-11-26",
     child: "Stephanie Taylor",
     parent: "Maria Taylor",
     program: "Bimbel UTBK–SNBT",
     grade: "12",
     number: "081299428949",
-    status: "Resolved",
+    status: "Verified",
   },
   {
+    id: "e7",
     date: "2025-11-26",
     child: "Danny Cannon",
     parent: "Paul Cannon",
@@ -99,15 +103,17 @@ const enrollments = [
     status: "Pending",
   },
   {
+    id: "e8",
     date: "2025-11-26",
     child: "Iyla Walton",
     parent: "Louis Walton",
     program: "Bimbel Kedinasan",
     grade: "Umum",
     number: "083298947228",
-    status: "Resolved",
+    status: "Verified",
   },
   {
+    id: "e9",
     date: "2025-11-26",
     child: "Aliana Zhang",
     parent: "Liam Zhang",
@@ -117,6 +123,7 @@ const enrollments = [
     status: "Pending",
   },
   {
+    id: "e10",
     date: "2025-11-26",
     child: "Sean Hammond",
     parent: "Anthony Hammond",
@@ -129,7 +136,7 @@ const enrollments = [
 
 function getStatusClasses(status) {
   switch (status) {
-    case "Resolved":
+    case "Verified":
       return "border-green-500 text-green-600 bg-green-50";
     case "Pending":
       return "border-amber-400 text-amber-500 bg-amber-50";
@@ -141,7 +148,7 @@ function getStatusClasses(status) {
 }
 
 /* ---------- Modal component ---------- */
-function EnrollmentDetailsModal({ open, onClose, enrollment }) {
+function EnrollmentDetailsModal({ open, onClose, enrollment, onChangeStatus }) {
   if (!open || !enrollment) return null;
 
   const {
@@ -158,6 +165,12 @@ function EnrollmentDetailsModal({ open, onClose, enrollment }) {
     program,
     documents = [],
   } = enrollment;
+
+  const handleStatus = (newStatus) => {
+    // call parent handler
+    if (onChangeStatus) onChangeStatus(enrollment.id, newStatus);
+    // close modal handled by parent
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
@@ -258,14 +271,14 @@ function EnrollmentDetailsModal({ open, onClose, enrollment }) {
           <button
             type="button"
             className="px-6 py-2 rounded-[10px] border border-[#A3173A] text-[#A3173A] bg-[#FFF3F3] text-sm font-semibold hover:bg-red-50"
-            onClick={() => console.log("Rejected", child)}
+            onClick={() => handleStatus("Rejected")}
           >
             Rejected
           </button>
           <button
             type="button"
             className="px-6 py-2 rounded-[10px] border border-[#698862] text-[#698862] bg-[#F8FFF6] text-sm font-semibold hover:bg-emerald-50"
-            onClick={() => console.log("Verified", child)}
+            onClick={() => handleStatus("Verified")}
           >
             Verified
           </button>
@@ -276,6 +289,9 @@ function EnrollmentDetailsModal({ open, onClose, enrollment }) {
 }
 
 export default function EnrollmentDataPage() {
+  // make enrollments stateful so status changes persist
+  const [enrollments, setEnrollments] = useState(initialEnrollments);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [startDate, setStartDate] = useState(""); // yyyy-mm-dd
   const [endDate, setEndDate] = useState("");
@@ -290,6 +306,17 @@ export default function EnrollmentDataPage() {
   const [selectedEnrollment, setSelectedEnrollment] = useState(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
 
+  // handle status change (id, newStatus)
+  const handleChangeStatus = (id, newStatus) => {
+    setEnrollments((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, status: newStatus } : e))
+    );
+    // close modal and clear selection
+    setDetailsOpen(false);
+    setSelectedEnrollment(null);
+    console.log(`Enrollment ${id} status changed to ${newStatus}`);
+  };
+
   // ---- FILTERING ----
   const filteredEnrollments = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -300,32 +327,39 @@ export default function EnrollmentDataPage() {
     if (end) end.setHours(23, 59, 59, 999);
 
     return enrollments.filter((row) => {
-      // text search
+      // text search (if field undefined, default to empty string)
+      const child = (row.child || "").toString().toLowerCase();
+      const parent = (row.parent || "").toString().toLowerCase();
+      const program = (row.program || "").toString().toLowerCase();
+      const grade = (row.grade || "").toString().toLowerCase();
+      const number = (row.number || "").toString().toLowerCase();
+      const status = (row.status || "").toString().toLowerCase();
+
       const matchesSearch =
         !q ||
-        row.child.toLowerCase().includes(q) ||
-        row.parent.toLowerCase().includes(q) ||
-        row.program.toLowerCase().includes(q) ||
-        row.grade.toLowerCase().includes(q) ||
-        row.number.toLowerCase().includes(q) ||
-        row.status.toLowerCase().includes(q);
+        child.includes(q) ||
+        parent.includes(q) ||
+        program.includes(q) ||
+        grade.includes(q) ||
+        number.includes(q) ||
+        status.includes(q);
 
       if (!matchesSearch) return false;
 
       // date range
-      const rowDate = new Date(row.date);
-      rowDate.setHours(12, 0, 0, 0); // avoid TZ weirdness
+      const rowDate = row.date ? new Date(row.date) : null;
+      if (rowDate) rowDate.setHours(12, 0, 0, 0); // avoid TZ weirdness
 
-      if (start && rowDate < start) return false;
-      if (end && rowDate > end) return false;
+      if (start && rowDate && rowDate < start) return false;
+      if (end && rowDate && rowDate > end) return false;
 
       return true;
     });
-  }, [searchTerm, startDate, endDate]);
+  }, [searchTerm, startDate, endDate, enrollments]);
 
   useEffect(() => {
     setPage(0);
-  }, [searchTerm, startDate, endDate]);
+  }, [searchTerm, startDate, endDate, rowsPerPage]);
 
   const paginatedEnrollments = useMemo(() => {
     const startIndex = page * rowsPerPage;
@@ -429,7 +463,7 @@ export default function EnrollmentDataPage() {
             <tbody>
               {paginatedEnrollments.map((row, idx) => (
                 <tr
-                  key={row.child + idx}
+                  key={row.id}
                   className={
                     idx % 2 === 0
                       ? "bg-white border-t border-[#E4E7D8]"
@@ -567,8 +601,12 @@ export default function EnrollmentDataPage() {
 
       <EnrollmentDetailsModal
         open={detailsOpen}
-        onClose={() => setDetailsOpen(false)}
+        onClose={() => {
+          setDetailsOpen(false);
+          setSelectedEnrollment(null);
+        }}
         enrollment={selectedEnrollment}
+        onChangeStatus={handleChangeStatus}
       />
     </div>
   );
