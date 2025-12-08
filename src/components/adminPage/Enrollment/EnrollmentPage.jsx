@@ -289,9 +289,7 @@ function EnrollmentDetailsModal({ open, onClose, enrollment, onChangeStatus }) {
 }
 
 export default function EnrollmentDataPage() {
-  // make enrollments stateful so status changes persist
   const [enrollments, setEnrollments] = useState(initialEnrollments);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [startDate, setStartDate] = useState(""); // yyyy-mm-dd
   const [endDate, setEndDate] = useState("");

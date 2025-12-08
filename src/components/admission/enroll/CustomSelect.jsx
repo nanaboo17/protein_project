@@ -25,7 +25,7 @@ export function CustomSelect({ placeholder, options, value, onChange }) {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 flex items-center justify-between focus:outline-none"
+        className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 flex items-center justify-between focus:outline-none"
       >
         <span className={value ? "text-[#333]" : "text-[#9B9B9B]"}>
           {selectedLabel}

@@ -47,7 +47,7 @@ export default function PreschoolProgramsSection() {
               </p>
               <button
                 onClick={goToEnroll}
-                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+                className="mt-5 w-full cursor-pointer bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
               >
                 Enroll Now
               </button>
@@ -71,7 +71,7 @@ export default function PreschoolProgramsSection() {
               </p>
               <button
                 onClick={goToEnroll}
-                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+                className="mt-5 w-full cursor-pointer bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
               >
                 Enroll Now
               </button>
@@ -95,7 +95,7 @@ export default function PreschoolProgramsSection() {
               </p>
               <button
                 onClick={goToEnroll}
-                className="mt-5 w-full bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
+                className="mt-5 w-full cursor-pointer bg-[#F9A22E] text-white font-semibold py-2.5 rounded-full text-sm"
               >
                 Enroll Now
               </button>

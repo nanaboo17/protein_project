@@ -147,7 +147,6 @@ const initialFeesState = {
 };
 
 export default function ManageContent() {
-  // Add these to your useState section near the top of ManageContent
   const [galleryPhotos, setGalleryPhotos] = useState([]); // Define initialGalleryState elsewhere
   const [isGalleryEditing, setIsGalleryEditing] = useState(false);
   const galleryFileInputRef = useRef(null); // Used for image upload input

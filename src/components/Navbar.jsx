@@ -19,7 +19,6 @@ export default function Navbar() {
     setIsOn((prev) => {
       const next = !prev;
       if (next) {
-        // when toggle becomes ON, go to admin page
         navigate("/admin");
       }
       return next;
@@ -27,28 +26,27 @@ export default function Navbar() {
   };
   return (
     <nav className="bg-[#F9A22E] w-full py-5 shadow-md relative">
-      {/* ====== Desktop Navbar ====== */}
       <div className="max-w-7xl mx-auto hidden md:flex items-center justify-center space-x-10">
         <Link
           to="/"
-          className="text-white text-[19px] font-semibold hover:opacity-80"
+          className="cursor-pointer text-white text-[19px] font-semibold hover:opacity-80"
         >
           Home
         </Link>
 
         <Link
           to="/about"
-          className="text-white text-[19px] font-semibold hover:opacity-80"
+          className="cursor-pointer text-white text-[19px] font-semibold hover:opacity-80"
         >
           About Us
         </Link>
 
-        {/* Programs dropdown (desktop) */}
+        {/* Programs dropdown */}
         <div className="relative">
           <button
             type="button"
             onClick={() => setIsProgramsOpen((prev) => !prev)}
-            className="flex items-center gap-1 text-white text-[19px] font-semibold hover:opacity-80"
+            className="cursor-pointer flex items-center gap-1 text-white text-[19px] font-semibold hover:opacity-80"
           >
             Programs
             <ChevronDown
@@ -65,14 +63,14 @@ export default function Navbar() {
             >
               <Link
                 to="/programs/preschool"
-                className="block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
+                className="cursor-pointer block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
                 onClick={() => setIsProgramsOpen(false)}
               >
                 Preschool
               </Link>
               <Link
                 to="/programs/bimbel"
-                className="block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
+                className="cursor-pointer block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
                 onClick={() => setIsProgramsOpen(false)}
               >
                 Bimbel & Kursus
@@ -88,12 +86,12 @@ export default function Navbar() {
           Gallery
         </Link>
 
-        {/* Admission dropdown (desktop) */}
+        {/* Admission dropdown */}
         <div className="relative">
           <button
             type="button"
             onClick={() => setIsContactOpen((prev) => !prev)}
-            className="flex items-center gap-1 text-white text-[19px] font-semibold hover:opacity-80"
+            className="cursor-pointer flex items-center gap-1 text-white text-[19px] font-semibold hover:opacity-80"
           >
             Admission
             <ChevronDown
@@ -110,14 +108,14 @@ export default function Navbar() {
             >
               <Link
                 to="/admissions/contact"
-                className="block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
+                className="cursor-pointer block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
                 onClick={() => setIsContactOpen(false)}
               >
                 Contact Us
               </Link>
               <Link
                 to="/admissions/enroll"
-                className="block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
+                className="cursor-pointer block px-4 py-2 text-[#1E3E73] text-[15px] font-medium hover:bg-[#FDF3DF]"
                 onClick={() => setIsContactOpen(false)}
               >
                 Enroll Kid

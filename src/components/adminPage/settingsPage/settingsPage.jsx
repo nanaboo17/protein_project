@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Sidebar from "../dashboard/components/Sidebar";
-import Header from "../dashboard/components/Header";
-import { Eye, EyeOff, Image } from "lucide-react";
-import userImg from "../../../assets/admin_page/user.png";
+import PageHeader from "../dashboard/components/Header";
+import { Eye, EyeOff, Settings } from "lucide-react";
+import settingsIcon from "../../../assets/admin_page/settings-icon.png";
 
 export default function AdminSettings() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,39 +14,29 @@ export default function AdminSettings() {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#F5F5EC] overflow-hidden">
+    <div className="min-h-screen bg-[#F4F5EC] flex">
       <Sidebar />
 
       {/* MAIN CONTENT */}
-      <div className="flex-1 flex flex-col px-6 py-6 gap-6 overflow-y-auto">
+      <div className="flex-1 px-8 py-6">
         {/* Top header */}
-        <Header
+        <PageHeader
           title="Settings"
           subtitle="Manage your administrator profile"
-          image={userImg}
+          image={settingsIcon}
           hideRefresh
         />
 
         {/* Profile panel */}
-        <div className="bg-white rounded-xl p-6 shadow-md border border-[#E8E8D2] flex items-center justify-between">
+        <div className="bg-white rounded-xl my-4 p-6 shadow-md border border-[#E8E8D2] flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img
-              src="https://via.placeholder.com/85"
-              alt="admin-profile"
-              className="w-[85px] h-[85px] rounded-full object-cover"
-            />
             <div>
-              <p className="text-xl font-semibold text-[#3C2C22]">
+              <p className="text-xl font-semibold text-[#00000070]">
                 Ibu Winda Astutik
               </p>
-              <p className="text-sm text-gray-500">Admin User</p>
+              <p className="mt-3 text-sm text-[#00000070]">Admin User</p>
             </div>
           </div>
-
-          <button className="flex items-center gap-2 bg-[#194A81] hover:bg-[#143865] text-white px-4 py-2 rounded-md text-sm transition">
-            <Image size={18} />
-            Change Image
-          </button>
         </div>
 
         {/* Information form */}
@@ -54,7 +44,7 @@ export default function AdminSettings() {
           onSubmit={handleUpdate}
           className="bg-white rounded-xl p-6 shadow-md border border-[#E8E8D2] space-y-6"
         >
-          <h2 className="text-lg font-semibold text-[#3C2C22]">
+          <h2 className="text-lg font-semibold text-[#00000070] ">
             Admin User Information
           </h2>
 
@@ -62,7 +52,7 @@ export default function AdminSettings() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* First Name */}
             <div>
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 First Name
               </label>
               <input
@@ -74,7 +64,7 @@ export default function AdminSettings() {
 
             {/* Last Name */}
             <div>
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 Last Name
               </label>
               <input
@@ -86,7 +76,7 @@ export default function AdminSettings() {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 Email Address
               </label>
               <input
@@ -98,7 +88,7 @@ export default function AdminSettings() {
 
             {/* Phone */}
             <div>
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 Phone Number
               </label>
               <input
@@ -110,7 +100,7 @@ export default function AdminSettings() {
 
             {/* Password */}
             <div className="relative">
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 New Password
               </label>
               <input
@@ -129,7 +119,7 @@ export default function AdminSettings() {
 
             {/* Confirm Password */}
             <div className="relative">
-              <label className="block text-sm font-semibold text-[#194A81] mb-2">
+              <label className="block text-sm font-semibold text-[#00000070] mb-2">
                 Confirm Password
               </label>
               <input
@@ -148,12 +138,14 @@ export default function AdminSettings() {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[#194A81] hover:bg-[#143865] text-white px-6 py-3 rounded-md font-semibold text-sm transition"
-          >
-            Update Information
-          </button>
+          <div className="flex items-center justify-center mt-10">
+            <button
+              type="submit"
+              className="bg-[#194A81] hover:bg-[#143865] text-white px-6 py-3 rounded-md font-semibold text-sm transition"
+            >
+              Update Information
+            </button>
+          </div>
         </form>
       </div>
     </div>

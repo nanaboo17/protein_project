@@ -30,7 +30,7 @@ export default function ContactFormSection() {
           Contact Us
         </h2>
 
-        <p className="mt-3 text-center text-[#00000065] text-sm font-semibold md:text-base leading-relaxed">
+        <p className="mt-3 text-center text-[#000000] text-sm font-semibold md:text-base leading-relaxed">
           Reach out to us with any question or inquiries you may have. Our team
           is ready to assist you!
         </p>
@@ -38,56 +38,56 @@ export default function ContactFormSection() {
         <form className="mt-8 space-y-6">
           {/* Name */}
           <div className="space-y-1">
-            <p className="text-center text-sm font-medium text-[#6B6B6B]">
+            <p className="text-center text-sm font-medium text-[#000000]">
               Your Name (Required)
             </p>
             <input
               type="text"
-              className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
+              className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
             />
           </div>
 
           {/* Email */}
           <div className="space-y-1">
-            <p className="text-center text-sm font-medium text-[#6B6B6B]">
+            <p className="text-center text-sm font-medium text-[#000000]">
               Your Email (Required)
             </p>
             <input
               type="email"
-              className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
+              className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
             />
           </div>
 
           {/* Whatsapp */}
           <div className="space-y-1">
-            <p className="text-center text-sm font-medium text-[#6B6B6B]">
+            <p className="text-center text-sm font-medium text-[#000000]">
               Your Whatsapp (Required)
             </p>
             <input
               type="text"
-              className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
+              className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
             />
           </div>
 
           {/* Subject */}
           <div className="space-y-1">
-            <p className="text-center text-sm font-medium text-[#6B6B6B]">
+            <p className="text-center text-sm font-medium text-[#000000]">
               Subject
             </p>
             <input
               type="text"
-              className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
+              className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
             />
           </div>
 
           {/* Message */}
           <div className="space-y-1">
-            <p className="text-center text-sm font-medium text-[#6B6B6B]">
+            <p className="text-center text-sm font-medium text-[#000000]">
               Your Message
             </p>
             <textarea
               rows={6}
-              className="w-full border border-[#D4D4D4] bg-[#F7F7F7] rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
+              className="w-full border border-[#00000050] bg-[#F8FAFC] rounded-md px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#F9A22E]"
             />
           </div>
 
@@ -95,7 +95,7 @@ export default function ContactFormSection() {
           <div className="flex justify-center pt-2">
             <button
               type="submit"
-              className="px-8 py-2 bg-[#F9A22E] text-white text-sm font-semibold rounded-md hover:opacity-90 transition"
+              className="px-8 py-2 bg-[#FDA133] text-white text-sm font-semibold rounded-md hover:opacity-90 transition"
             >
               Send
             </button>
