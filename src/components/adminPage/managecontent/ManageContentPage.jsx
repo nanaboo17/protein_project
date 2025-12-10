@@ -125,6 +125,26 @@ const initialProgramState = {
       subheadline: "Specialized tutoring for vocational school admissions.",
       image: mockImages.emptyImage,
     },
+    "Literasi Bahasa Indonesia": {
+      headline: "Literasi Bahasa Indonesia",
+      subheadline: "Specialized tutoring for vocational school admission.",
+      image: mockImages.emptyImage,
+    },
+    "English for Kids": {
+      headline: "English for Kids",
+      subheadline: "Specialized tutoring for vocational school admission.",
+      image: mockImages.emptyImage,
+    },
+    "Computer Course": {
+      headline: "Computer Course",
+      subheadline: "Specialized tutoring for vocational school admission.",
+      image: mockImages.emptyImage,
+    },
+    "Reading & Writing Course": {
+      headline: "Reading & Writing Course",
+      subheadline: "Specialized tutoring for vocational school admission.",
+      image: mockImages.emptyImage,
+    },
   },
 };
 const initialFeesState = {
@@ -143,7 +163,11 @@ const initialFeesState = {
     "Computer Course": { registration: "50.00", monthly: "350.00" },
     "Reading & Writing Course": { registration: "50.00", monthly: "350.00" },
   },
-  // Add other sections like 'Core Curriculum' or 'Enrichment' if they have fees
+  bankInfo: {
+    bankName: "",
+    accountNumber: "",
+    accountHolder: "",
+  },
 };
 
 export default function ManageContent() {
@@ -154,6 +178,7 @@ export default function ManageContent() {
   const [heroHeadline, setHeroHeadline] = useState(
     "Inspiring Future Generation Through Education and Values"
   );
+
   const [heroSubheadline, setHeroSubheadline] = useState(
     "At Rumah Sukses Foundation, we believe every child deserves the opportunity to learn, grow, and succeed"
   );
@@ -162,6 +187,7 @@ export default function ManageContent() {
   const [programTab, setProgramTab] = useState("Preschool");
   const [programsOpen, setProgramsOpen] = useState(false);
   const [programsState, setProgramsState] = useState(initialProgramState);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const programsFileInputRef = useRef(null);
   const currentProgram = programsState[programTab];
   const handleProgramFieldChange = (field, value) => {
@@ -745,7 +771,7 @@ export default function ManageContent() {
             className="w-full flex items-center justify-between px-6 py-4"
           >
             <span className="font-semibold text-[18px] text-[#000000]">
-              Tuition & Fees
+              Fees & Bank Information
             </span>
             <ChevronUp className="text-[#00000050]" size={26} />
           </button>
@@ -771,8 +797,59 @@ export default function ManageContent() {
             feesState,
             handleFeeChange
           )}
+          {/* --- Bank Information Section --- */}
+          <div className="mt-10">
+            <h3 className="font-semibold text-[16px] text-black mb-4">
+              Bank Information
+            </h3>
 
-          {/* --- Add other fee groups here (e.g., Core Curriculum, Enrichment) --- */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Bank Name */}
+              <div>
+                <label className="text-sm text-[#5B6F8E] mb-1 block">
+                  Bank Name
+                </label>
+                <input
+                  type="text"
+                  className="border border-[#D0D7E0] rounded-lg px-3 py-2 w-full"
+                  value={feesState.bankInfo.bankName || ""}
+                  onChange={(e) =>
+                    handleFeeChange("bankInfo", "bankName", e.target.value)
+                  }
+                />
+              </div>
+
+              {/* Account Number */}
+              <div>
+                <label className="text-sm text-[#5B6F8E] mb-1 block">
+                  Account Number
+                </label>
+                <input
+                  type="text"
+                  className="border border-[#D0D7E0] rounded-lg px-3 py-2 w-full"
+                  value={feesState.bankInfo.accountNumber || ""}
+                  onChange={(e) =>
+                    handleFeeChange("bankInfo", "accountNumber", e.target.value)
+                  }
+                />
+              </div>
+
+              {/* Account Holder */}
+              <div>
+                <label className="text-sm text-[#5B6F8E] mb-1 block">
+                  Account Holder
+                </label>
+                <input
+                  type="text"
+                  className="border border-[#D0D7E0] rounded-lg px-3 py-2 w-full"
+                  value={feesState.bankInfo.accountHolder || ""}
+                  onChange={(e) =>
+                    handleFeeChange("bankInfo", "accountHolder", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          </div>
 
           {/* Action Buttons */}
           <div className="flex justify-end gap-3 mt-8">
@@ -1201,7 +1278,7 @@ export default function ManageContent() {
         </div>
 
         <div className="px-6 pt-5 border-b border-[#D0D7E0]">
-          <div className="flex gap-6 text-sm font-medium text-[#5B6F8E] overflow-x-auto pb-2">
+          <div className="flex gap-6 text-sm font-medium text-[#5B6F8E] pb-2">
             {visibleTabs.map((tab) => {
               const active = tab === activeSubTab;
               return (
@@ -1209,7 +1286,7 @@ export default function ManageContent() {
                   key={tab}
                   type="button"
                   onClick={() => handleProgramSubTabChange(section, tab)}
-                  className={`flex-shrink-0 pb-2 -mb-px border-b-2 transition ${
+                  className={`shrink-0 pb-2 -mb-px border-b-2 transition ${
                     active
                       ? "border-[#1E3E73] text-[#1E3E73] font-semibold"
                       : "border-transparent hover:text-[#1E3E73] hover:border-[#1E3E73]/50"
@@ -1223,6 +1300,7 @@ export default function ManageContent() {
               <div className="relative group">
                 <button
                   type="button"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className={`pb-2 -mb-px border-b-2 transition flex items-center gap-1 ${
                     hiddenTabs.includes(activeSubTab)
                       ? "border-[#1E3E73] text-[#1E3E73] font-semibold"
@@ -1246,7 +1324,7 @@ export default function ManageContent() {
                         className={`block w-full text-left px-4 py-2 text-sm ${
                           tab === activeSubTab
                             ? "bg-[#EFF5FF] text-[#1E3E73] font-semibold"
-                            : "text-[#5B6F8E] hover:bg-gray-100"
+                            : "text-red hover:bg-gray-100"
                         }`}
                         role="menuitem"
                       >
